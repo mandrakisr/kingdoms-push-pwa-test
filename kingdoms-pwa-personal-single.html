@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kingdoms Dare of Hearts — Mandraki &amp; Takeesha</title>
+<meta name="theme-color" content="#c1121f">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#f5f0f0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:110px}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 14px;background:#c1121f;color:#fff;font-weight:700}button.secondary{background:#222;border:1px solid #444;color:#fff}button.ghost{background:transparent;border:1px solid #666;color:#ddd}button:disabled{opacity:.45;cursor:not-allowed}input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid #444;background:#171717;color:#fff;margin:6px 0 12px}label{font-size:.9rem;color:#ddd}.topbar{position:sticky;top:0;z-index:20;background:#000;border-bottom:3px solid #c1121f;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}.topbar h1{font-size:1.05rem;margin:0}.rolebanner{padding:10px 14px;font-weight:800;text-align:center}body[data-role="Dominant"] .rolebanner{background:#c1121f;color:#fff}body[data-role="submissive"] .rolebanner{background:#3d0005;color:#ffd166;border:1px solid #ffd166}body[data-role="Dominant"] .topbar{border-bottom-color:#c1121f}body[data-role="submissive"] .topbar{border-bottom-color:#ffd166}.demobanner{background:#ffd166;color:#111;padding:9px 14px;text-align:center;font-weight:800}.wrap{max-width:680px;margin:0 auto;padding:14px}.card{background:#171717;border:1px solid #333;border-radius:16px;padding:16px;margin:12px 0}.card h2,.card h3{margin:0 0 8px}body[data-role="Dominant"] .card{border-color:#5a1016}body[data-role="submissive"] .card{border-color:#5a4a1a}.muted{color:#bbb}.small{font-size:.85rem}.pill{display:inline-block;background:#c1121f;color:#fff;border-radius:999px;padding:4px 10px;font-size:.8rem;margin:2px}.pill.gold{background:#ffd166;color:#111}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.daybtn{background:#222;color:#fff;border:1px solid #444;padding:12px 4px;border-radius:12px}.daybtn.approved{background:#1f7a3a;border-color:#2ea84b}.daybtn.awaiting{background:#c1121f}.daybtn.blocked{background:#333;color:#999;text-decoration:line-through}.daybtn.current{outline:3px solid #ffd166}.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#000;border-top:2px solid #c1121f;display:flex;overflow-x:auto}.tabbar button{flex:1;background:transparent;color:#ddd;border-radius:0;white-space:nowrap;min-width:72px}.tabbar button.active{background:#c1121f;color:#fff}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}.hidden{display:none!important}.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}.hearts span{position:absolute;bottom:-30px;font-size:22px;opacity:.25;animation:drift 12s linear infinite}.hearts span:nth-child(2){left:20%;animation-delay:3s}.hearts span:nth-child(3){left:55%;animation-delay:6s}.hearts span:nth-child(4){left:80%;animation-delay:9s}@keyframes drift{to{transform:translateY(-110vh) rotate(20deg)}}.warn{background:#3d0005;border:1px solid #c1121f;border-radius:12px;padding:12px;margin:12px 0}.ok{background:#123d22;border:1px solid #2ea84b;border-radius:12px;padding:12px;margin:12px 0}.countdown{font-size:2rem;font-weight:900;text-align:center;margin:8px 0}.private-note{background:#1a1200;border:1px solid #ffd166;border-radius:12px;padding:12px;margin:12px 0}@media(prefers-reduced-motion:reduce){.hearts span{animation:none!important}}
+
+
+body[data-theme="light"]{background:#fdf6f0;color:#2b1a1a}
+body[data-theme="light"] .topbar{background:#fff;border-bottom-color:#c1121f}
+body[data-theme="light"] .card{background:#fff;border-color:#e8c9c9}
+body[data-theme="light"] input,body[data-theme="light"] select,body[data-theme="light"] textarea{background:#fff;color:#222;border-color:#d9b8b8}
+body[data-theme="light"] label{color:#5a3a3a}
+body[data-theme="light"] .muted{color:#6b4a4a}
+body[data-theme="light"] button.secondary{background:#f3e2e2;border-color:#d9a8a8;color:#7a1016}
+body[data-theme="light"] button.ghost{border-color:#c99;color:#7a1016}
+body[data-theme="light"] .tabbar{background:#fff;border-top-color:#c1121f}
+body[data-theme="light"] .tabbar button{color:#5a3a3a}
+body[data-theme="light"] .tabbar button.active{background:#c1121f;color:#fff}
+body[data-theme="light"] .daybtn{background:#fff;color:#222;border-color:#d9b8b8}
+body[data-theme="light"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="light"] .warn{background:#fff0f0;border-color:#c1121f;color:#5a1016}
+body[data-theme="light"] .ok{background:#e8f5ec;border-color:#2ea84b;color:#123d22}
+body[data-theme="light"] .private-note{background:#fff8e6;border-color:#d4af37;color:#5a3a00}
+
+
+.profile-photo{width:170px;height:170px;object-fit:cover;border-radius:50%;border:3px solid #c1121f;display:block;margin:8px 0}
+.profile-photo-small{width:40px;height:40px;object-fit:cover;border-radius:50%;border:2px solid #c1121f;flex:0 0 auto}
+
+body[data-theme="rose"]{background:#fdeef2;color:#2b1a1a}
+body[data-theme="rose"] .topbar{background:#fff;border-bottom:3px solid #c05a6e}
+body[data-theme="rose"] .card{background:#fff;border-color:#f0c4cd}
+body[data-theme="rose"] input,body[data-theme="rose"] select,body[data-theme="rose"] textarea{background:#fff;color:#222;border-color:#f0c4cd}
+body[data-theme="rose"] label{color:#5a3a3a}
+body[data-theme="rose"] .muted{color:#6b4a4a}
+body[data-theme="rose"] button{background:#c05a6e}
+body[data-theme="rose"] button.secondary{background:#fff;border-color:#f0c4cd;color:#333}
+body[data-theme="rose"] button.ghost{border-color:#f0c4cd;color:#333}
+body[data-theme="rose"] .tabbar{background:#fff;border-top:3px solid #c05a6e}
+body[data-theme="rose"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="rose"] .tabbar button.active{background:#c05a6e;color:#fff}
+body[data-theme="rose"] .daybtn{background:#fff;color:#222;border-color:#f0c4cd}
+body[data-theme="rose"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="rose"] .warn{background:#fff;border-color:#c05a6e}
+body[data-theme="rose"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="rose"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="rose"] .profile-photo{border-color:#c05a6e}
+body[data-theme="rose"] .profile-photo-small{border-color:#c05a6e}
+
+body[data-theme="lavender"]{background:#f1eefb;color:#2b1a1a}
+body[data-theme="lavender"] .topbar{background:#fff;border-bottom:3px solid #7a6bb5}
+body[data-theme="lavender"] .card{background:#fff;border-color:#d5cdf0}
+body[data-theme="lavender"] input,body[data-theme="lavender"] select,body[data-theme="lavender"] textarea{background:#fff;color:#222;border-color:#d5cdf0}
+body[data-theme="lavender"] label{color:#5a3a3a}
+body[data-theme="lavender"] .muted{color:#6b4a4a}
+body[data-theme="lavender"] button{background:#7a6bb5}
+body[data-theme="lavender"] button.secondary{background:#fff;border-color:#d5cdf0;color:#333}
+body[data-theme="lavender"] button.ghost{border-color:#d5cdf0;color:#333}
+body[data-theme="lavender"] .tabbar{background:#fff;border-top:3px solid #7a6bb5}
+body[data-theme="lavender"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="lavender"] .tabbar button.active{background:#7a6bb5;color:#fff}
+body[data-theme="lavender"] .daybtn{background:#fff;color:#222;border-color:#d5cdf0}
+body[data-theme="lavender"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="lavender"] .warn{background:#fff;border-color:#7a6bb5}
+body[data-theme="lavender"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="lavender"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="lavender"] .profile-photo{border-color:#7a6bb5}
+body[data-theme="lavender"] .profile-photo-small{border-color:#7a6bb5}
+
+body[data-theme="mint"]{background:#eef7f0;color:#2b1a1a}
+body[data-theme="mint"] .topbar{background:#fff;border-bottom:3px solid #3a9a7a}
+body[data-theme="mint"] .card{background:#fff;border-color:#c2e6d3}
+body[data-theme="mint"] input,body[data-theme="mint"] select,body[data-theme="mint"] textarea{background:#fff;color:#222;border-color:#c2e6d3}
+body[data-theme="mint"] label{color:#5a3a3a}
+body[data-theme="mint"] .muted{color:#6b4a4a}
+body[data-theme="mint"] button{background:#3a9a7a}
+body[data-theme="mint"] button.secondary{background:#fff;border-color:#c2e6d3;color:#333}
+body[data-theme="mint"] button.ghost{border-color:#c2e6d3;color:#333}
+body[data-theme="mint"] .tabbar{background:#fff;border-top:3px solid #3a9a7a}
+body[data-theme="mint"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="mint"] .tabbar button.active{background:#3a9a7a;color:#fff}
+body[data-theme="mint"] .daybtn{background:#fff;color:#222;border-color:#c2e6d3}
+body[data-theme="mint"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="mint"] .warn{background:#fff;border-color:#3a9a7a}
+body[data-theme="mint"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="mint"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="mint"] .profile-photo{border-color:#3a9a7a}
+body[data-theme="mint"] .profile-photo-small{border-color:#3a9a7a}
+
+body[data-theme="peach"]{background:#fdf1e7;color:#2b1a1a}
+body[data-theme="peach"] .topbar{background:#fff;border-bottom:3px solid #d67a4a}
+body[data-theme="peach"] .card{background:#fff;border-color:#f2d0b8}
+body[data-theme="peach"] input,body[data-theme="peach"] select,body[data-theme="peach"] textarea{background:#fff;color:#222;border-color:#f2d0b8}
+body[data-theme="peach"] label{color:#5a3a3a}
+body[data-theme="peach"] .muted{color:#6b4a4a}
+body[data-theme="peach"] button{background:#d67a4a}
+body[data-theme="peach"] button.secondary{background:#fff;border-color:#f2d0b8;color:#333}
+body[data-theme="peach"] button.ghost{border-color:#f2d0b8;color:#333}
+body[data-theme="peach"] .tabbar{background:#fff;border-top:3px solid #d67a4a}
+body[data-theme="peach"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="peach"] .tabbar button.active{background:#d67a4a;color:#fff}
+body[data-theme="peach"] .daybtn{background:#fff;color:#222;border-color:#f2d0b8}
+body[data-theme="peach"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="peach"] .warn{background:#fff;border-color:#d67a4a}
+body[data-theme="peach"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="peach"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="peach"] .profile-photo{border-color:#d67a4a}
+body[data-theme="peach"] .profile-photo-small{border-color:#d67a4a}
+
+body[data-theme="sky"]{background:#eef5fb;color:#2b1a1a}
+body[data-theme="sky"] .topbar{background:#fff;border-bottom:3px solid #4a8ab5}
+body[data-theme="sky"] .card{background:#fff;border-color:#c2d9ea}
+body[data-theme="sky"] input,body[data-theme="sky"] select,body[data-theme="sky"] textarea{background:#fff;color:#222;border-color:#c2d9ea}
+body[data-theme="sky"] label{color:#5a3a3a}
+body[data-theme="sky"] .muted{color:#6b4a4a}
+body[data-theme="sky"] button{background:#4a8ab5}
+body[data-theme="sky"] button.secondary{background:#fff;border-color:#c2d9ea;color:#333}
+body[data-theme="sky"] button.ghost{border-color:#c2d9ea;color:#333}
+body[data-theme="sky"] .tabbar{background:#fff;border-top:3px solid #4a8ab5}
+body[data-theme="sky"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="sky"] .tabbar button.active{background:#4a8ab5;color:#fff}
+body[data-theme="sky"] .daybtn{background:#fff;color:#222;border-color:#c2d9ea}
+body[data-theme="sky"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="sky"] .warn{background:#fff;border-color:#4a8ab5}
+body[data-theme="sky"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="sky"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="sky"] .profile-photo{border-color:#4a8ab5}
+body[data-theme="sky"] .profile-photo-small{border-color:#4a8ab5}
+
+body[data-theme="butter"]{background:#fdf8e3;color:#2b1a1a}
+body[data-theme="butter"] .topbar{background:#fff;border-bottom:3px solid #a88a1a}
+body[data-theme="butter"] .card{background:#fff;border-color:#eadfa8}
+body[data-theme="butter"] input,body[data-theme="butter"] select,body[data-theme="butter"] textarea{background:#fff;color:#222;border-color:#eadfa8}
+body[data-theme="butter"] label{color:#5a3a3a}
+body[data-theme="butter"] .muted{color:#6b4a4a}
+body[data-theme="butter"] button{background:#a88a1a}
+body[data-theme="butter"] button.secondary{background:#fff;border-color:#eadfa8;color:#333}
+body[data-theme="butter"] button.ghost{border-color:#eadfa8;color:#333}
+body[data-theme="butter"] .tabbar{background:#fff;border-top:3px solid #a88a1a}
+body[data-theme="butter"] .tabbar button{background:transparent;color:#5a3a3a}
+body[data-theme="butter"] .tabbar button.active{background:#a88a1a;color:#fff}
+body[data-theme="butter"] .daybtn{background:#fff;color:#222;border-color:#eadfa8}
+body[data-theme="butter"] .daybtn.blocked{background:#eee;color:#999}
+body[data-theme="butter"] .warn{background:#fff;border-color:#a88a1a}
+body[data-theme="butter"] .ok{background:#e8f5ec;border-color:#2ea84b}
+body[data-theme="butter"] .private-note{background:#fff8e6;border-color:#d4af37}
+body[data-theme="butter"] .profile-photo{border-color:#a88a1a}
+body[data-theme="butter"] .profile-photo-small{border-color:#a88a1a}
+
+</style>
+</head>
+<body data-role="submissive">
+<div class="hearts" aria-hidden="true"><span>❤</span><span>🌹</span><span>❤</span><span>🌹</span></div>
+<header class="topbar">
+<h1>❤ Kingdoms Dare of Hearts 🌹</h1>
+<img id="topbarPhoto" class="profile-photo-small hidden" alt="Profile photo">
+<select id="roleSelect" aria-label="Who is signing in">
+<option value="submissive">Takeesha (submissive)</option>
+<option value="Dominant">Mandraki (Dominant)</option>
+</select>
+<select id="themeSelect" aria-label="Theme">
+<option value="dark">Dark</option>
+<option value="light">Light Ivory</option>
+<option value="rose">Pastel Rose</option>
+<option value="lavender">Pastel Lavender</option>
+<option value="mint">Pastel Mint</option>
+<option value="peach">Pastel Peach</option>
+<option value="sky">Pastel Sky</option>
+<option value="butter">Pastel Butter</option>
+</select>
+</header>
+<div id="roleBanner" class="rolebanner">Takeesha view — Your service today</div>
+<div id="demoBanner" class="demobanner">DEMO MODE — Supabase not connected. Demo data only. Use Reset test data to clear demo entries.</div>
+<main class="wrap">
+<section id="view-lock" class="card">
+<h2>Private sign-in — Mandraki &amp; Takeesha only</h2>
+<p class="muted">This personal version is for Mandraki and Takeesha only, not for distribution. In demo mode, choose who you are below. When Supabase is connected, sign in with your own Supabase Auth email and password in Settings — each partner chooses their own password. Switching profiles signs you out and requires the other profile's own password.</p>
+<label>Who is signing in?</label>
+<select id="lockRole"><option value="submissive">Takeesha (submissive)</option><option value="Dominant">Mandraki (Dominant)</option></select>
+<button id="demoEnterBtn">Enter demo as this profile</button>
+<p class="small muted">Demo only. Supabase Auth sign-in lives in Settings when connected.</p>
+</section>
+<section id="view-home" class="card hidden">
+<div id="mandrakiHome" class="hidden">
+<h2>Mandraki — Dominant oversight</h2>
+<p id="pendingPanel" class="warn">Pending approvals: Day 3 reflection is awaiting Mandraki's approval.</p>
+<p class="muted">Review reflections, approve or send back, write custom dares in the Deck, and respond to Takeesha's Requests with a tone check. Approval is required before the next day unlocks.</p>
+<button data-nav="journey">Review journey</button>
+<button data-nav="requests" class="secondary">Review Requests</button>
+</div>
+<div id="takeeshaHome">
+<h2>Takeesha — Your service today</h2>
+<p id="todayText">Day 3 — Attentive check-in: a short, focused service and communication task. Complete the limits check first.</p>
+<p class="muted">Reflection prompt: What did you notice, and what would you do differently next time?</p>
+<button data-nav="journey">Begin today's dare</button>
+<button data-nav="limits" class="secondary">Read limits first</button>
+</div>
+<div class="card"><h3>Progress</h3><p id="progressText">Days 1-2 approved. Day 3 awaiting approval.</p><div style="background:#333;height:12px;border-radius:99px;overflow:hidden"><div id="progressBar" style="background:#c1121f;height:12px;width:5%"></div></div></div>
+<div class="card"><h3>❤ Sunday lunch — protected</h3><p id="sundayText">Every Sunday is protected 1-on-1 time for Mandraki and Takeesha. No correction tasks that day. Reminder the day before and Sunday morning.</p><button id="markLunchBtn" class="secondary">Mark this Sunday lunch complete</button><p id="lunchMsg" class="small muted"></p></div>
+<div class="card"><h3>Grace Words &amp; Tone Pause</h3><p class="muted">Grace Words: slow down, listen fully, speak with care. Tone Pause: pause the conversation, reset tone, then return — no penalty, no correction tasks on Sundays.</p><button id="tonePauseBtn" class="secondary">Take a Tone Pause — no penalty</button><p id="toneMsg" class="small muted"></p></div>
+</section>
+<section id="view-journey" class="card hidden">
+<h2>40-day journey — Mandraki &amp; Takeesha</h2>
+<p class="muted">Days 1-10 Foundation, 11-20 Devotion, 21-30 Trust, 31-40 Kingdom. Then the open deck. One dare per day. No dare unlocks if a limit blocks it. Intimacy &amp; Passion dares are non-graphic and bound by the Intimacy &amp; Passion hard limit.</p>
+<div class="grid" id="journeyGrid"></div>
+<div id="dayDetail" class="card hidden"></div>
+</section>
+<section id="view-deck" class="card hidden">
+<h2>Dare deck</h2>
+<p class="muted">After Day 40, or for extra practice. Filter, draw, or pick. Pause or decline via limits with no penalty. After an Intimacy &amp; Passion dare, complete the aftercare checklist.</p>
+<div class="row">
+<select id="deckCategory"><option value="">All categories</option><option>Service</option><option>Communication</option><option>Protocol</option><option>Trust</option><option>Ritual</option><option>Attentiveness</option><option>Intimacy &amp; Passion</option></select>
+<select id="deckTime"><option value="">Any time</option><option value="10">Up to 10 min</option><option value="30">Up to 30 min</option><option value="60">Up to 60 min</option></select>
+<select id="deckIntensity"><option value="">Any intensity</option><option value="gentle">gentle</option><option value="moderate">moderate</option><option value="intense">intense</option></select>
+</div>
+<button id="drawBtn">Draw a dare</button>
+<div id="deckList"></div>
+<div id="aftercareBox" class="card hidden"><h3>Aftercare checklist — after Intimacy &amp; Passion</h3><label><input type="checkbox" id="ac1" style="width:auto"> Quiet check-in together</label><br><label><input type="checkbox" id="ac2" style="width:auto"> Comfort, water, and rest offered</label><br><label><input type="checkbox" id="ac3" style="width:auto"> Limits and feelings reviewed kindly</label><br><button id="acSave">Save aftercare checklist</button><p id="acMsg" class="small muted"></p></div>
+<div id="customForm" class="card">
+<h3>Write a custom dare — Mandraki only</h3>
+<p id="customNote" class="muted">Only Mandraki (Dominant) can write a custom dare. In Takeesha's view, this form is not available.</p>
+<label>Title</label><input id="customTitle" placeholder="Custom dare title">
+<label>Description</label><textarea id="customDesc" rows="3" placeholder="Service, communication, protocol, trust, or ritual. Non-graphic only."></textarea>
+<label>Category</label><select id="customCat"><option>Service</option><option>Communication</option><option>Protocol</option><option>Trust</option><option>Ritual</option><option>Attentiveness</option><option>Intimacy &amp; Passion</option></select>
+<button id="customSave">Save custom dare</button>
+</div>
+</section>
+<section id="view-marriage" class="card hidden">
+<h2>Our Hands in Marriage</h2>
+<p class="muted">Countdown to Saturday, May 15, 2027 — for Mandraki and Takeesha.</p>
+<div class="countdown" id="marriageCountdown">—</div>
+<p id="marriageSub" class="small muted" style="text-align:center"></p>
+<div id="marriagePhases"></div>
+<div class="card"><h3>Marriage Reward Day — May 15, 2027</h3><p class="muted">Pick one. Nothing is pre-selected.</p>
+<label><input type="radio" name="reward" value="renewal" style="width:auto"> Renewal</label><br>
+<label><input type="radio" name="reward" value="trip" style="width:auto"> Trip</label><br>
+<label><input type="radio" name="reward" value="special_date" style="width:auto"> Special date</label><br>
+<label><input type="radio" name="reward" value="custom" style="width:auto"> Custom</label><br>
+<label>Custom reward (only if Custom chosen)</label><input id="rewardCustom" placeholder="Describe a custom reward">
+<button id="rewardSave">Save reward choice</button><p id="rewardMsg" class="small muted"></p></div>
+</section>
+<section id="view-dates" class="card hidden">
+<h2>Muse Dates — Evansville area</h2>
+<p class="muted">Results are headed by distance from the city you enter. Save as a Request, add as a Dare, or add to Our Hands in Marriage.</p>
+<label>City / State / ZIP</label><input id="dateCity" value="Evansville, IN">
+<button id="useAreaBtn" class="secondary">Use my area</button>
+<label>Radius</label><select id="dateRadius"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option></select>
+<div class="row">
+<select id="dateType"><option value="">Any type</option><option>outing</option><option>meal</option><option>walk</option><option>activity</option><option>quiet</option></select>
+<select id="dateTime"><option value="">Any time</option><option>morning</option><option>afternoon</option><option>evening</option><option>anytime</option></select>
+<select id="dateBudget"><option value="">Any budget</option><option>low</option><option>medium</option><option>higher</option></select>
+<select id="dateVibe"><option value="">Any vibe</option><option>calm</option><option>playful</option><option>romantic</option><option>active</option></select>
+</div>
+<button id="dateSearchBtn">Search dates</button>
+<div id="dateList"></div>
+<div class="card"><h3>Saved dates</h3><div id="savedDateList"></div></div>
+<div id="questionnaireBox" class="card hidden"><h3>Post-date questionnaire</h3><p class="muted">Skipping is allowed with no penalty. Empty submissions are blocked. Answers save under Monthly Recap and as a Journal entry.</p>
+<label>How did it feel?</label><textarea id="qFelt" rows="2"></textarea>
+<label>What went well?</label><textarea id="qWell" rows="2"></textarea>
+<label>What could have been handled better?</label><textarea id="qBetter" rows="2"></textarea>
+<label><input type="checkbox" id="qListened" style="width:auto"> Each partner felt listened to and safe</label><br>
+<label><input type="checkbox" id="qGrace" style="width:auto"> A Grace Pause or tone check was needed</label><br>
+<label>One thing to carry forward</label><textarea id="qCarry" rows="2"></textarea>
+<button id="qSave">Save questionnaire</button><button id="qSkip" class="secondary">Skip — no penalty</button><p id="qMsg" class="small muted"></p></div>
+</section>
+<section id="view-council" class="card hidden">
+<h2>Council — private first</h2>
+<p class="muted">Each partner's entries are visible only in their own view unless they choose Share theme only or Share full entry. Only approved shared themes appear in the shared Council view. Anunnaki (Mandraki's Muse AI) and Ana (Takeesha's Muse AI) exchange only approved shared themes.</p>
+<label>Your private feelings entry</label><textarea id="councilText" rows="4" placeholder="Write privately. Nothing here is shared until you choose to share it."></textarea>
+<label>Theme (short summary, used if you share theme only)</label><input id="councilTheme" placeholder="e.g. needing more listening time">
+<div class="row"><button id="councilPrivate">Keep private</button><button id="councilThemeBtn" class="secondary">Share theme only</button><button id="councilFullBtn" class="secondary">Share full entry</button></div>
+<h3>Your private entries</h3><div id="myCouncilList"></div>
+<h3>Shared Council view</h3><div id="sharedCouncilList"></div>
+<div class="card"><h3>Anunnaki ↔ Ana — simulated exchange</h3><p class="muted">Shows only approved shared themes, never private entries.</p><div id="councilExchange"></div><div id="jointNote"></div><button id="jointSaveBtn" class="secondary">Save joint note to Monthly Recap &amp; Journal</button></div>
+</section>
+<section id="view-requests" class="card hidden">
+<h2>Requests &amp; Edits — two-way</h2>
+<p class="muted">Weekly prompt: at least one Request from each partner per week — Mandraki and Takeesha both. Respond with a tone check, then approve, decline, or edit.</p>
+<label>Title</label><input id="reqTitle" placeholder="Request title">
+<label>Request</label><textarea id="reqBody" rows="3"></textarea>
+<label>Tone-check note (how you want this received)</label><input id="reqTone" placeholder="e.g. gentle and unhurried">
+<button id="reqSave">Send Request</button>
+<div id="requestList"></div>
+</section>
+<section id="view-recap" class="card hidden">
+<h2>Monthly Recap &amp; Journal</h2>
+<p class="muted">Monthly Recap ritual: review the month, questionnaires from completed dates and dares, Council joint notes, and Requests. Export Recap &amp; Journal any time.</p>
+<label>Month (YYYY-MM)</label><input id="recapMonth" placeholder="2026-10">
+<label>Recap notes</label><textarea id="recapText" rows="4"></textarea>
+<button id="recapSave">Save Monthly Recap</button>
+<div id="recapList"></div>
+<div id="journalList"></div>
+<div class="row"><button id="exportBtn" class="secondary">Export Recap &amp; Journal</button><button id="resetDemoBtn" class="ghost">Reset test data (demo mode)</button></div>
+<p id="exportMsg" class="small muted"></p>
+</section>
+<section id="view-limits" class="card hidden">
+<h2>Limits &amp; Safeword</h2>
+<p class="muted">Toggle a hard limit and matching dares become blocked. Pause stops a dare with no penalty. Safeword stops it instantly with no penalty.</p>
+<div id="limitsList"></div>
+<label>Safeword</label><input id="safewordInput" placeholder="Your shared safeword">
+<label>Aftercare preferences</label><textarea id="aftercareInput" rows="3"></textarea>
+<button id="pauseBtn" class="secondary">Pause current dare — no penalty</button>
+<button id="safewordBtn">Use safeword — stop now, no penalty</button>
+<p id="limitsMsg" class="small muted"></p>
+</section>
+<section id="view-notifications" class="card hidden">
+<h2>Notifications center</h2>
+<p class="muted">Discreet titles only. Titles never contain dare or private content. Example title: Kingdoms: new update. In-app + realtime only — no VAPID web push in this package.</p>
+<button id="markReadBtn" class="secondary">Mark all read</button>
+<div id="notificationList"></div>
+</section>
+<section id="view-settings" class="card hidden">
+<h2>Settings — Supabase connection</h2>
+<div class="warn"><strong>Never enter a service_role key here.</strong> Use only the anon public key. Connection details are stored in this browser only, in localStorage.</div>
+<label>Supabase Project URL</label>
+<input id="sbUrl" placeholder="https://your-project.supabase.co">
+<label>Supabase anon public key</label>
+<input id="sbKey" placeholder="YOUR_ANON_KEY" autocomplete="off">
+<div class="row"><button id="saveSbBtn">Save connection locally</button><button id="testSbBtn" class="secondary">Test connection</button><button id="clearSbBtn" class="ghost">Clear connection</button></div>
+<p id="sbStatus" class="small muted"></p>
+<h3>Profile photo</h3>
+<p class="muted">Facebook profile size: shown at 170 x 170 pixels, stored as a 320 x 320 square crop in this browser only, per profile. It does not sync to the other phone yet, so each phone sets its own photo for now.</p>
+<img id="profilePhoto" class="profile-photo hidden" alt="Profile photo">
+<div class="row"><input type="file" id="profilePhotoInput" accept="image/*"><button id="removePhotoBtn" class="ghost">Remove photo</button></div>
+<p id="photoStatus" class="small muted"></p>
+<h4>Partner photo (synced)</h4>
+<img id="partnerPhoto" class="profile-photo-partner hidden" alt="Partner profile photo">
+<p class="small muted">Shows your partner's synced photo once they upload one on their phone.</p>
+<h3>Per-profile Supabase Auth sign-in</h3>
+<p class="muted">Choose who is signing in first. Switching profiles signs you out and requires the other profile's own password. Each partner chooses their own password; passwords are handled by Supabase Auth, never stored in profiles.</p>
+<label>Who is signing in?</label><select id="authRole"><option value="submissive">Takeesha (submissive)</option><option value="Dominant">Mandraki (Dominant)</option></select>
+<label>Email</label><input id="authEmail" type="email" placeholder="you@example.com">
+<label>Password</label><input id="authPassword" type="password" placeholder="Choose your own password">
+<label>New password (Change my password)</label><input id="newPassword" type="password" placeholder="Leave blank unless changing">
+<label>Couple pairing code</label><input id="pairingCode" placeholder="Enter a pairing code, or leave blank to create a new couple">
+<div class="row"><button id="authSignupBtn" class="secondary">Sign up</button><button id="authSigninBtn">Sign in</button><button id="authSignoutBtn" class="ghost">Sign out / Switch profile</button><button id="changePwBtn" class="secondary">Change my password</button></div>
+<p id="authStatus" class="small muted"></p>
+<p class="small muted">Per-profile recovery design: use Supabase Auth password reset (email link) per profile email. Each profile recovers only its own account; the other profile's password is never touched.</p>
+<h3>Push notifications</h3>
+<p class="muted">Discreet titles only: Kingdoms: new update. Push works when the app is closed on Android, and on iPhone only if the app is installed to the Home Screen and push permission is allowed. This needs the multi-file PWA with service-worker.js at the same root, not the single-file version.</p>
+<div class="row"><button id="enablePushBtn">Enable push notifications</button><button id="disablePushBtn" class="ghost">Disable push</button></div>
+<p id="pushStatus" class="small muted"></p>
+<h3>Notification toggles (per category)</h3>
+<label><input type="checkbox" id="toggleDaily" checked style="width:auto"> Daily dare</label><br>
+<label><input type="checkbox" id="toggleApproval" checked style="width:auto"> Approval needed</label><br>
+<label><input type="checkbox" id="toggleRequest" checked style="width:auto"> Requests</label><br>
+<label><input type="checkbox" id="toggleSafeword" checked style="width:auto"> Safeword / pause</label><br>
+<label><input type="checkbox" id="toggleJournal" checked style="width:auto"> Journal updates</label><br>
+<label><input type="checkbox" id="toggleCouncil" checked style="width:auto"> Council</label><br>
+<label><input type="checkbox" id="toggleMarriage" checked style="width:auto"> Marriage track</label><br>
+<label><input type="checkbox" id="toggleLunch" checked style="width:auto"> Sunday lunch</label>
+</section>
+</main>
+<nav class="tabbar" aria-label="Main navigation">
+<button data-nav="home" class="active">Home</button>
+<button data-nav="journey">Journey</button>
+<button data-nav="deck">Deck</button>
+<button data-nav="marriage">Marriage</button>
+<button data-nav="dates">Dates</button>
+<button data-nav="council">Council</button>
+<button data-nav="requests">Requests</button>
+<button data-nav="recap">Recap</button>
+<button data-nav="limits">Limits</button>
+<button data-nav="notifications">Alerts</button>
+<button data-nav="settings">Settings</button>
+</nav>
+<script>
+var role = 'submissive';
+var displayName = 'Takeesha';
+var unlocked = false;
+var currentDay = 3;
+var connected = false;
+var sb = null;
+var coupleId = null;
+var profileId = null;
+var rewardChoice = null;
+var lastCompletedLabel = '';
+function nameFor(r){ return r === 'Dominant' ? 'Mandraki' : 'Takeesha'; }
+function phaseFor(n){ if(n<=10) return 'Foundation'; if(n<=20) return 'Devotion'; if(n<=30) return 'Trust'; return 'Kingdom'; }
+function phaseText(n){
+  var p = phaseFor(n);
+  if(p==='Foundation') return 'Communication, limits check-in, service, attentiveness, and daily protocol.';
+  if(p==='Devotion') return 'Obedience tasks, rituals, praise and correction, and consistency.';
+  if(p==='Trust') return 'Deeper trust in non-graphic terms, longer tasks, and aftercare focus.';
+  return 'Shared rituals, renewal of limits and safeword, reflection, and what carries forward.';
+}
+var dayTemplates = [
+  ['Service check-in', 'Service', 15, 'gentle'],
+  ['Clear communication', 'Communication', 15, 'gentle'],
+  ['Attentive check-in', 'Attentiveness', 20, 'gentle'],
+  ['Daily protocol', 'Protocol', 15, 'gentle'],
+  ['Limits review', 'Communication', 20, 'gentle'],
+  ['Service ritual', 'Ritual', 20, 'moderate'],
+  ['Praise and encouragement', 'Communication', 15, 'gentle'],
+  ['Consistency practice', 'Protocol', 20, 'moderate'],
+  ['Trust conversation', 'Trust', 30, 'moderate'],
+  ['Aftercare check-in', 'Trust', 20, 'gentle']
+];
+var days = [];
+for(var i=1;i<=40;i++){
+  var t = dayTemplates[(i-1)%dayTemplates.length];
+  var status = 'locked';
+  if(i===1||i===2) status='approved';
+  if(i===3) status='awaiting_approval';
+  days.push({day_number:i, phase:phaseFor(i), dare_title:'Day '+i+' — '+t[0], dare_text:phaseText(i)+' Focus: '+t[0]+'. Keep it practical, respectful, and within agreed limits.', category:t[1], time_minutes:t[2], intensity:t[3], status:status, reflection_text:i===3?'I noticed the value of a calm check-in and clear next steps.':'', limits_checked:false, safeword_used:false});
+}
+var deck = [
+  {title:'Morning service', description:'Prepare a calm start to the day and check in briefly.', category:'Service', time_minutes:15, intensity:'gentle', is_custom:false},
+  {title:'Clear request practice', description:'State one request clearly, listen fully, and confirm understanding.', category:'Communication', time_minutes:20, intensity:'gentle', is_custom:false},
+  {title:'Protocol reminder', description:'Follow one agreed daily protocol from start to finish.', category:'Protocol', time_minutes:15, intensity:'gentle', is_custom:false},
+  {title:'Gratitude note', description:'Share one specific appreciation in writing.', category:'Communication', time_minutes:10, intensity:'gentle', is_custom:false},
+  {title:'Ritual evening', description:'Complete a short shared evening ritual and debrief.', category:'Ritual', time_minutes:30, intensity:'moderate', is_custom:false},
+  {title:'Attentive listening', description:'Listen without interrupting, then reflect back what was heard.', category:'Attentiveness', time_minutes:20, intensity:'gentle', is_custom:false},
+  {title:'Quiet closeness', description:'A calm, non-graphic closeness ritual: quiet time together, gentle attention, and an aftercare check-in.', category:'Intimacy & Passion', time_minutes:30, intensity:'moderate', is_custom:false, limit_key:'intimacy_passion'},
+  {title:'Service project', description:'Complete one agreed service task and report back.', category:'Service', time_minutes:60, intensity:'moderate', is_custom:false},
+  {title:'Trust check-in', description:'Review limits, comfort, and next steps together.', category:'Trust', time_minutes:30, intensity:'moderate', is_custom:false},
+  {title:'Longer ritual', description:'A longer shared ritual with a clear start, middle, and aftercare check.', category:'Ritual', time_minutes:60, intensity:'intense', is_custom:false},
+  {title:'Calm reset', description:'Pause, breathe, and reset tone before continuing a conversation.', category:'Communication', time_minutes:10, intensity:'gentle', is_custom:false},
+  {title:'Hands at rest', description:'A quiet, restful task with hands still and attention focused.', category:'Trust', time_minutes:20, intensity:'moderate', is_custom:false, limit_key:'restraint'}
+];
+var limitsList = [
+  {limit_key:'restraint', limit_label:'Restraint of any kind', is_active:false},
+  {limit_key:'public_tasks', limit_label:'Public tasks', is_active:false},
+  {limit_key:'long_tasks', limit_label:'Tasks over 60 minutes', is_active:false},
+  {limit_key:'sensory', limit_label:'Sensory tasks', is_active:false},
+  {limit_key:'photography', limit_label:'Photography or recording', is_active:false},
+  {limit_key:'intimacy_passion', limit_label:'Intimacy & Passion (hard limit — blocks that category)', is_active:false}
+];
+var journal = [
+  {title:'Day 1 approved', body:'Completed and approved. Reflection saved.', created_by_role:'submissive'},
+  {title:'Day 2 approved', body:'Completed and approved. Reflection saved.', created_by_role:'submissive'}
+];
+var notifications = [
+  {category:'approval', title:'Kingdoms: new update', body:'Open the app for a new update.', is_read:false},
+  {category:'daily', title:'Kingdoms: new update', body:'Open the app for a new update.', is_read:false},
+  {category:'lunch', title:'Kingdoms: new update', body:'Open the app for a new update.', is_read:false}
+];
+var dateIdeas = [
+  {title:'Riverfront walk', description:'Easy walk along the riverfront, unhurried conversation.', city:'Evansville, IN', date_type:'walk', time_of_day:'afternoon', budget:'low', vibe:'calm', distance_miles:2},
+  {title:'Quiet coffee date', description:'Coffee and a calm check-in, no phones for the first half hour.', city:'Evansville, IN', date_type:'meal', time_of_day:'morning', budget:'low', vibe:'calm', distance_miles:3},
+  {title:'Botanic garden stroll', description:'Slow stroll with time to notice and talk.', city:'Evansville, IN', date_type:'outing', time_of_day:'morning', budget:'low', vibe:'romantic', distance_miles:4},
+  {title:'Farmers market morning', description:'Browse together and pick one treat to share.', city:'Evansville, IN', date_type:'outing', time_of_day:'morning', budget:'low', vibe:'playful', distance_miles:3},
+  {title:'Museum afternoon', description:'Unhurried museum visit with a favourite-exhibit debrief.', city:'Evansville, IN', date_type:'activity', time_of_day:'afternoon', budget:'medium', vibe:'calm', distance_miles:5},
+  {title:'Picnic in the park', description:'Packed picnic, blanket, and one gratitude note each.', city:'Evansville, IN', date_type:'outing', time_of_day:'afternoon', budget:'low', vibe:'romantic', distance_miles:6},
+  {title:'Evening dinner out', description:'A relaxed dinner with a no-correction rule for the evening.', city:'Evansville, IN', date_type:'meal', time_of_day:'evening', budget:'medium', vibe:'romantic', distance_miles:4},
+  {title:'Movie night at home', description:'Chosen film, comfortable seating, and an aftercare-style check-in.', city:'Evansville, IN', date_type:'quiet', time_of_day:'evening', budget:'low', vibe:'calm', distance_miles:0},
+  {title:'Bookstore browse', description:'Each picks a book for the other, then explains the choice.', city:'Evansville, IN', date_type:'outing', time_of_day:'afternoon', budget:'low', vibe:'playful', distance_miles:5},
+  {title:'Trail walk', description:'Gentle trail walk with a tone-check pause halfway.', city:'Evansville, IN', date_type:'walk', time_of_day:'morning', budget:'low', vibe:'active', distance_miles:9},
+  {title:'Dessert stop', description:'One shared dessert and a short post-date questionnaire together.', city:'Evansville, IN', date_type:'meal', time_of_day:'evening', budget:'low', vibe:'playful', distance_miles:7},
+  {title:'Art gallery visit', description:'Quiet gallery visit, then share one piece that stood out.', city:'Evansville, IN', date_type:'activity', time_of_day:'afternoon', budget:'medium', vibe:'calm', distance_miles:8},
+  {title:'Lakeside drive', description:'Short drive out of town, music, and unhurried talk.', city:'Evansville, IN', date_type:'outing', time_of_day:'afternoon', budget:'low', vibe:'romantic', distance_miles:18},
+  {title:'Cook together evening', description:'Cook a simple meal together, then eat without rushing.', city:'Evansville, IN', date_type:'quiet', time_of_day:'evening', budget:'low', vibe:'playful', distance_miles:0}
+];
+var savedDates = [];
+var councilMine = [];
+var councilShared = [
+  {owner_role:'submissive', theme_text:'needing more listening time', share_status:'theme_only'},
+  {owner_role:'Dominant', theme_text:'wanting steadier follow-through', share_status:'theme_only'}
+];
+var requests = [
+  {from_role:'submissive', to_role:'Dominant', title:'More unhurried listening', body:'Please listen fully before responding when feelings are high.', tone_note:'gentle and unhurried', status:'pending', response_text:''}
+];
+var recaps = [];
+var marriagePhases = [
+  {phase:'Foundation', title:'Foundation', description:'Now – early December: daily protocol, limits, service, and calm communication.', date:'Now – early Dec 2026'},
+  {phase:'Deck + Intimacy', title:'Deck + Intimacy', description:'December – February: open deck practice, including non-graphic Intimacy & Passion within agreed limits.', date:'Dec 2026 – Feb 2027'},
+  {phase:'Trust and Requests', title:'Trust and Requests', description:'March – April: deeper trust work and two-way Requests.', date:'Mar 2027 – Apr 2027'},
+  {phase:'Kingdom Week', title:'Kingdom Week', description:'May 9–14, 2027: a week of shared rituals leading to Marriage Reward Day.', date:'May 9–14, 2027'},
+  {phase:'Marriage Reward Day', title:'Marriage Reward Day', description:'May 15, 2027: celebrate with the reward Mandraki and Takeesha pick together.', date:'May 15, 2027'}
+];
+function el(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function isBlockedDare(dare){
+  if(!dare || !dare.limit_key) return false;
+  return limitsList.some(function(l){ return l.is_active && l.limit_key===dare.limit_key; });
+}
+function addJournal(title, body, type, day){
+  journal.unshift({title:title, body:body, created_by_role:role});
+  if(connected && sb && coupleId){
+    sb.from('journal_entries').insert({couple_id:coupleId, entry_type:type||'journey', day_number:day||null, title:title, body:body, created_by_role:role}).then(function(){});
+  }
+  renderJournal();
+}
+function addNotification(category){
+  notifications.unshift({category:category, title:'Kingdoms: new update', body:'Open the app for a new update.', is_read:false});
+  if(connected && sb && coupleId){
+    sb.from('notifications').insert({couple_id:coupleId, category:category, title:'Kingdoms: new update', body:'Open the app for a new update.', target_role:role==='Dominant'?'submissive':'Dominant'}).then(function(){}); if(sb && connected && coupleId){ sb.functions.invoke('send-push', {body: {couple_id: coupleId, target_role: role==='Dominant'?'submissive':'Dominant', category: category}}).then(function(){}).catch(function(){}); }
+  }
+  renderNotifications();
+}
+function setRole(r){
+  role = r; displayName = nameFor(r);
+  document.body.setAttribute('data-role', r);
+  el('roleSelect').value = r;
+  var banner = el('roleBanner');
+  banner.textContent = r==='Dominant' ? 'Mandraki view — Dominant oversight and approvals' : 'Takeesha view — Your service today';
+  el('mandrakiHome').classList.toggle('hidden', r!=='Dominant');
+  el('takeeshaHome').classList.toggle('hidden', r==='Dominant');
+  var note = el('customNote');
+  if(note) note.textContent = r==='Dominant' ? 'Mandraki only: you may write a custom dare.' : 'Only Mandraki (Dominant) can write a custom dare. In Takeesha\'s view, this form is not available.';
+  el('customTitle').disabled = r!=='Dominant';
+  el('customDesc').disabled = r!=='Dominant';
+  el('customSave').disabled = r!=='Dominant';
+  renderJourney(); renderDeck(); renderCouncil(); loadProfilePhoto();
+}
+function showView(name){
+  ['lock','home','journey','deck','marriage','dates','council','requests','recap','limits','notifications','settings'].forEach(function(v){
+    var s = el('view-'+v); if(s) s.classList.toggle('hidden', v!==name);
+  });
+  document.querySelectorAll('.tabbar button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-nav')===name); });
+  if(name==='journey') renderJourney();
+  if(name==='deck') renderDeck();
+  if(name==='marriage') renderMarriage();
+  if(name==='dates') renderDates();
+  if(name==='council') renderCouncil();
+  if(name==='requests') renderRequests();
+  if(name==='recap'){ renderRecaps(); renderJournal(); }
+  if(name==='limits') renderLimits();
+  if(name==='notifications') renderNotifications();
+}
+function renderJourney(){
+  var grid = el('journeyGrid'); if(!grid) return;
+  grid.innerHTML = '';
+  days.forEach(function(d){
+    var b = document.createElement('button');
+    var blocked = isBlockedDare(d);
+    var cls = 'daybtn ' + (d.status==='approved'?'approved':d.status==='awaiting_approval'?'awaiting':blocked?'blocked':'');
+    if(d.day_number===currentDay) cls += ' current';
+    b.className = cls;
+    b.textContent = 'Day '+d.day_number;
+    b.onclick = function(){ openDay(d.day_number); };
+    grid.appendChild(b);
+  });
+  el('progressText').textContent = 'Days 1-2 approved. Day 3 awaiting Mandraki\'s approval.';
+  el('progressBar').style.width = '5%';
+}
+function openDay(n){
+  currentDay = n;
+  var d = days[n-1];
+  var blocked = isBlockedDare(d);
+  var detail = el('dayDetail'); detail.classList.remove('hidden');
+  var wording = role==='Dominant' ? 'Present the dare' : 'Begin the dare';
+  var html = '<h3>'+esc(d.dare_title)+'</h3><p><span class="pill">'+esc(d.phase)+'</span> <span class="pill">'+esc(d.category)+'</span> <span class="pill">'+d.time_minutes+' min</span> <span class="pill">'+esc(d.intensity)+'</span></p><p>'+esc(d.dare_text)+'</p><p class="muted">Reflection prompt: What did you notice, and what would you do differently next time?</p>';
+  if(blocked){ html += '<p class="warn">Blocked by a limit / Sealed by your limits. This dare cannot unlock while the matching hard limit is active.</p>'; }
+  else {
+    html += '<label><input type="checkbox" id="dayLimitsCheck" style="width:auto"> Limits check complete — this dare is within agreed limits</label><br>';
+    html += '<button id="dayBegin">'+wording+'</button> ';
+    html += '<button id="dayPause" class="secondary">Pause — no penalty</button> ';
+    html += '<button id="daySafeword" class="ghost">Safeword — stop now, no penalty</button>';
+    html += '<div style="margin-top:12px"><label>Reflection (Takeesha)</label><textarea id="dayReflection" rows="3">'+esc(d.reflection_text||'')+'</textarea><button id="dayComplete">Complete &amp; send reflection</button></div>';
+    if(role==='Dominant' && d.status==='awaiting_approval'){
+      html += '<div style="margin-top:12px"><button id="dayApprove">Approve reflection (Mandraki)</button> <button id="daySendBack" class="secondary">Send back</button></div>';
+    }
+    html += '<p class="small muted">Status: '+esc(d.status)+'</p>';
+  }
+  detail.innerHTML = html;
+  var begin = el('dayBegin');
+  if(begin) begin.onclick = function(){ if(!el('dayLimitsCheck').checked){ alert('Complete the limits check first.'); return; } d.limits_checked=true; d.status='in_progress'; saveJourney(d); renderJourney(); openDay(n); };
+  var pause = el('dayPause');
+  if(pause) pause.onclick = function(){ d.status='paused'; addJournal('Day '+n+' paused','Paused with no penalty.','pause',n); addNotification('safeword'); renderJourney(); };
+  var safe = el('daySafeword');
+  if(safe) safe.onclick = function(){ d.safeword_used=true; d.status='paused'; addJournal('Safeword used','Honoured instantly, no penalty. Aftercare preferences apply.','safeword',n); addNotification('safeword'); renderJourney(); };
+  var comp = el('dayComplete');
+  if(comp) comp.onclick = function(){ var v = el('dayReflection').value.trim(); if(!v){ alert('Reflection cannot be empty.'); return; } d.reflection_text=v; d.status='awaiting_approval'; saveJourney(d); addJournal('Day '+n+' reflection sent','Reflection sent for Mandraki\'s approval.','reflection',n); addNotification('approval'); renderJourney(); openDay(n); };
+  var appr = el('dayApprove');
+  if(appr) appr.onclick = function(){ d.status='approved'; saveJourney(d); addJournal('Day '+n+' approved','Approved by Mandraki.','approval',n); addNotification('journal'); currentDay=n+1; renderJourney(); openDay(Math.min(currentDay,40)); };
+  var back = el('daySendBack');
+  if(back) back.onclick = function(){ d.status='awaiting_reflection'; saveJourney(d); addNotification('approval'); renderJourney(); openDay(n); };
+}
+function saveJourney(d){
+  if(connected && sb && coupleId){
+    sb.from('journey_progress').upsert({couple_id:coupleId, day_number:d.day_number, phase:d.phase, dare_title:d.dare_title, dare_text:d.dare_text, category:d.category, time_minutes:d.time_minutes, intensity:d.intensity, status:d.status, reflection_text:d.reflection_text, limits_checked:d.limits_checked, safeword_used:d.safeword_used}, {onConflict:'couple_id,day_number'}).then(function(){});
+  }
+}
+function renderDeck(){
+  var list = el('deckList'); if(!list) return;
+  var cat = el('deckCategory').value, tm = el('deckTime').value, inten = el('deckIntensity').value;
+  list.innerHTML = '';
+  deck.filter(function(d){
+    return (!cat || d.category===cat) && (!tm || d.time_minutes<=parseInt(tm,10)) && (!inten || d.intensity===inten);
+  }).forEach(function(d){
+    var blocked = isBlockedDare(d);
+    var div = document.createElement('div'); div.className='card';
+    div.innerHTML = '<h3>'+esc(d.title)+'</h3><p>'+esc(d.description)+'</p><p><span class="pill">'+esc(d.category)+'</span> <span class="pill">'+d.time_minutes+' min</span> <span class="pill">'+esc(d.intensity)+'</span>'+(d.is_custom?' <span class="pill gold">Custom by Mandraki</span>':'')+'</p>' + (blocked?'<p class="warn">Blocked by a limit / Sealed by your limits</p>':'<button class="deckAccept">Accept dare</button> <button class="deckPause secondary">Pause — no penalty</button>');
+    var acc = div.querySelector('.deckAccept');
+    if(acc) acc.onclick = function(){
+      addJournal('Deck dare completed: '+d.title,'Completed and saved to shared history.','deck',null); addNotification('journal');
+      lastCompletedLabel = d.title;
+      if(d.category==='Intimacy & Passion'){ el('aftercareBox').classList.remove('hidden'); el('aftercareBox').scrollIntoView(); }
+      else { showQuestionnaire('deck', d.title); }
+    };
+    var pau = div.querySelector('.deckPause');
+    if(pau) pau.onclick = function(){ addJournal('Deck dare paused: '+d.title,'Paused with no penalty.','pause',null); };
+    list.appendChild(div);
+  });
+}
+function renderMarriage(){
+  var target = new Date('2027-05-15T00:00:00');
+  var now = new Date();
+  var diff = Math.max(0, Math.ceil((target - now) / 86400000));
+  el('marriageCountdown').textContent = diff + ' days to May 15, 2027';
+  el('marriageSub').textContent = 'Saturday, May 15, 2027 — Marriage Reward Day for Mandraki and Takeesha.';
+  el('marriagePhases').innerHTML = marriagePhases.map(function(p){
+    return '<div class="card"><h3>'+esc(p.title)+'</h3><p class="small muted">'+esc(p.date)+'</p><p>'+esc(p.description)+'</p></div>';
+  }).join('');
+  if(rewardChoice){ el('rewardMsg').textContent = 'Saved reward: ' + rewardChoice; }
+}
+function renderDates(){
+  var list = el('dateList'); if(!list) return;
+  var radius = parseFloat(el('dateRadius').value);
+  var ty = el('dateType').value, tm = el('dateTime').value, bu = el('dateBudget').value, vi = el('dateVibe').value;
+  var filtered = dateIdeas.filter(function(d){
+    return d.distance_miles <= radius && (!ty || d.date_type===ty) && (!tm || d.time_of_day===tm || d.time_of_day==='anytime') && (!bu || d.budget===bu) && (!vi || d.vibe===vi);
+  }).sort(function(a,b){ return a.distance_miles - b.distance_miles; });
+  list.innerHTML = filtered.length ? '' : '<p class="muted">No sample ideas match those filters in this radius. Widen the radius or clear a filter.</p>';
+  filtered.forEach(function(d){
+    var div = document.createElement('div'); div.className='card';
+    div.innerHTML = '<h3>'+esc(d.title)+' — about '+d.distance_miles+' miles</h3><p>'+esc(d.description)+'</p><p><span class="pill">'+esc(d.date_type)+'</span> <span class="pill">'+esc(d.time_of_day)+'</span> <span class="pill">'+esc(d.budget)+'</span> <span class="pill">'+esc(d.vibe)+'</span></p><button class="saveReq">Save as Request</button> <button class="addDare secondary">Add as Dare</button> <button class="addMarriage secondary">Add to Our Hands in Marriage</button> <button class="completeDate ghost">Mark completed + questionnaire</button>';
+    div.querySelector('.saveReq').onclick = function(){ savedDates.unshift({title:d.title, description:d.description, saved_as:'request'}); requests.unshift({from_role:role, to_role:role==='Dominant'?'submissive':'Dominant', title:'Date idea: '+d.title, body:d.description, tone_note:'', status:'pending', response_text:''}); addNotification('request'); renderDates(); renderRequests(); };
+    div.querySelector('.addDare').onclick = function(){ deck.unshift({title:d.title, description:d.description, category:'Ritual', time_minutes:30, intensity:'gentle', is_custom:false}); savedDates.unshift({title:d.title, description:d.description, saved_as:'dare'}); addJournal('Date added as dare: '+d.title, d.description, 'deck', null); renderDates(); renderDeck(); };
+    div.querySelector('.addMarriage').onclick = function(){ savedDates.unshift({title:d.title, description:d.description, saved_as:'marriage'}); addJournal('Date added to Our Hands in Marriage: '+d.title, d.description, 'deck', null); renderDates(); };
+    div.querySelector('.completeDate').onclick = function(){ lastCompletedLabel = d.title; showQuestionnaire('date', d.title); };
+    list.appendChild(div);
+  });
+  el('savedDateList').innerHTML = savedDates.length ? savedDates.map(function(s){ return '<div class="card"><h3>'+esc(s.title)+'</h3><p class="small muted">Saved as: '+esc(s.saved_as)+'</p></div>'; }).join('') : '<p class="muted">No saved dates yet.</p>';
+  if(connected && sb && coupleId){
+    sb.from('dates_saved').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){
+      if(r.data && r.data.length){ savedDates = r.data.map(function(x){ return {title:x.title, description:x.description, saved_as:x.saved_as}; }); renderDates(); }
+    });
+  }
+}
+function showQuestionnaire(source, label){
+  lastCompletedLabel = label;
+  var box = el('questionnaireBox'); box.classList.remove('hidden');
+  box.scrollIntoView();
+  el('qMsg').textContent = 'Questionnaire for: ' + label + ' (' + source + '). Skipping is allowed with no penalty.';
+  box.setAttribute('data-source', source);
+}
+function saveQuestionnaire(skipped){
+  var felt = el('qFelt').value.trim(), well = el('qWell').value.trim(), better = el('qBetter').value.trim(), carry = el('qCarry').value.trim();
+  if(!skipped && !felt && !well && !better && !carry){ el('qMsg').textContent='Empty submissions are blocked. Fill in at least one field, or choose Skip.'; return; }
+  var entry = 'Questionnaire — ' + lastCompletedLabel + ': felt: ' + felt + '; went well: ' + well + '; better: ' + better + '; listened and safe: ' + (el('qListened').checked?'yes':'not marked') + '; Grace Pause/tone needed: ' + (el('qGrace').checked?'yes':'no') + '; carry forward: ' + carry;
+  if(skipped) entry = 'Questionnaire skipped — no penalty — for ' + lastCompletedLabel;
+  var month = new Date().toISOString().slice(0,7);
+  recaps.push({month_text:month, content:entry, created_by_role:role});
+  addJournal('Questionnaire saved: ' + lastCompletedLabel, entry, 'reflection', null);
+  if(connected && sb && coupleId){
+    sb.from('questionnaires').insert({couple_id:coupleId, source_type:el('questionnaireBox').getAttribute('data-source')||'date', source_label:lastCompletedLabel, felt_text:felt, went_well:well, handled_better:better, listened_safe:el('qListened').checked, grace_pause_needed:el('qGrace').checked, carry_forward:carry, skipped:skipped, created_by_role:role}).then(function(){});
+    sb.from('recaps').insert({couple_id:coupleId, month_text:month, content:entry, created_by_role:role}).then(function(){});
+  }
+  el('qMsg').textContent = skipped ? 'Skipped — no penalty.' : 'Saved to Monthly Recap and Journal.';
+  el('qFelt').value=''; el('qWell').value=''; el('qBetter').value=''; el('qCarry').value=''; el('qListened').checked=false; el('qGrace').checked=false;
+  renderRecaps();
+}
+function renderCouncil(){
+  var mine = el('myCouncilList'), shared = el('sharedCouncilList');
+  if(!mine) return;
+  mine.innerHTML = councilMine.length ? councilMine.map(function(c){ return '<div class="card"><p>'+esc(c.full_text)+'</p><p class="small muted">Theme: '+esc(c.theme_text)+' — '+esc(c.share_status)+' (visible only to '+nameFor(role)+')</p></div>'; }).join('') : '<p class="muted">No private entries yet for '+displayName+'.</p>';
+  shared.innerHTML = councilShared.length ? councilShared.map(function(c){
+    var text = c.share_status==='full' ? c.full_text : c.theme_text;
+    return '<div class="card"><p>'+esc(text)+'</p><p class="small muted">Shared by '+nameFor(c.owner_role)+' — '+esc(c.share_status)+'</p></div>';
+  }).join('') : '<p class="muted">Nothing shared yet.</p>';
+  var hasM = councilShared.some(function(c){ return c.owner_role==='Dominant'; });
+  var hasT = councilShared.some(function(c){ return c.owner_role==='submissive'; });
+  el('councilExchange').innerHTML = '<p>Anunnaki (for Mandraki) ↔ Ana (for Takeesha): sharing only approved themes.</p>' + councilShared.map(function(c){ return '<p>• '+nameFor(c.owner_role)+' theme: '+esc(c.theme_text)+'</p>'; }).join('');
+  if(hasM && hasT){
+    var themes = councilShared.map(function(c){ return nameFor(c.owner_role)+': '+c.theme_text; }).join('; ');
+    el('jointNote').innerHTML = '<div class="ok"><h3>Joint Council note</h3><p>Shared themes: '+esc(themes)+'</p><p>Each partner\'s needs: Mandraki — steadier follow-through and respect for his protector/teammate role; Takeesha — being truly listened to, safety, and kept promises.</p><p>Fair-fighting / tone suggestion: use Grace Words, pause before reacting, and check tone before continuing.</p><p>One concrete next step: one unhurried check-in this week with no corrections.</p></div>';
+  } else {
+    el('jointNote').innerHTML = '<p class="muted">A joint note appears here once both Mandraki and Takeesha have shared something.</p>';
+  }
+}
+function addCouncilEntry(share){
+  var text = el('councilText').value.trim(), theme = el('councilTheme').value.trim();
+  if(!text){ alert('Write an entry first.'); return; }
+  if(share!=='private' && !theme){ alert('Add a short theme before sharing.'); return; }
+  var entry = {owner_role:role, full_text:text, theme_text:theme||text.slice(0,80), share_status:share};
+  councilMine.unshift(entry);
+  if(share!=='private') councilShared.unshift(entry);
+  if(connected && sb && coupleId){
+    sb.from('council_entries').insert({couple_id:coupleId, created_by:profileId, owner_role:role, full_text:text, theme_text:theme, share_status:share}).then(function(){});
+  }
+  el('councilText').value=''; el('councilTheme').value='';
+  addNotification('journal');
+  renderCouncil();
+}
+function renderRequests(){
+  var list = el('requestList'); if(!list) return;
+  list.innerHTML = requests.length ? '' : '<p class="muted">No Requests yet. Weekly prompt: at least one from each partner per week.</p>';
+  requests.forEach(function(r, idx){
+    var div = document.createElement('div'); div.className='card';
+    div.innerHTML = '<h3>'+esc(r.title)+'</h3><p>'+esc(r.body)+'</p><p class="small muted">From '+nameFor(r.from_role)+' to '+nameFor(r.to_role)+' — tone note: '+esc(r.tone_note||'none')+' — status: '+esc(r.status)+(r.response_text?' — response: '+esc(r.response_text):'')+'</p><div class="row"><button class="reqApprove">Approve</button><button class="reqDecline secondary">Decline</button><button class="reqEdit secondary">Edit</button><button class="reqTone secondary">Tone Pause response</button></div>';
+    div.querySelector('.reqApprove').onclick = function(){ r.status='approved'; r.response_text='Approved with a tone check: received calmly, no rushed reaction.'; syncRequest(r); renderRequests(); addNotification('request'); };
+    div.querySelector('.reqDecline').onclick = function(){ r.status='declined'; r.response_text='Declined kindly, with a tone check and no penalty.'; syncRequest(r); renderRequests(); };
+    div.querySelector('.reqEdit').onclick = function(){ var edited = prompt('Edit this Request:', r.body); if(edited===null) return; r.body=edited; r.status='edited'; r.response_text='Edited after a tone check.'; syncRequest(r); renderRequests(); };
+    div.querySelector('.reqTone').onclick = function(){ r.response_text='Tone Pause: pausing to reset tone before responding. No penalty.'; renderRequests(); addJournal('Tone Pause on Request: '+r.title,'Tone Pause used, no penalty.','pause',null); };
+    list.appendChild(div);
+  });
+}
+function syncRequest(r){
+  if(connected && sb && coupleId){
+    sb.from('requests').insert({couple_id:coupleId, from_role:r.from_role, to_role:r.to_role, title:r.title, body:r.body, tone_note:r.tone_note, status:r.status, response_text:r.response_text, created_by:profileId}).then(function(){});
+  }
+}
+function renderRecaps(){
+  var list = el('recapList'); if(!list) return;
+  list.innerHTML = recaps.length ? recaps.map(function(r){ return '<div class="card"><h3>Monthly Recap — '+esc(r.month_text)+'</h3><p>'+esc(r.content)+'</p></div>'; }).join('') : '<p class="muted">No Monthly Recaps yet. Save questionnaires and joint notes here.</p>';
+}
+function renderLimits(){
+  var list = el('limitsList'); if(!list) return;
+  list.innerHTML = '';
+  limitsList.forEach(function(l){
+    var div = document.createElement('div');
+    div.innerHTML = '<label><input type="checkbox" '+(l.is_active?'checked':'')+' data-key="'+l.limit_key+'" style="width:auto"> '+esc(l.limit_label)+'</label><br>';
+    list.appendChild(div);
+  });
+  list.querySelectorAll('input').forEach(function(inp){
+    inp.onchange = function(){
+      var item = limitsList.find(function(x){ return x.limit_key===inp.getAttribute('data-key'); });
+      if(item) item.is_active = inp.checked;
+      if(connected && sb && coupleId){ sb.from('limits').upsert({couple_id:coupleId, limit_key:item.limit_key, limit_label:item.limit_label, is_hard:true, is_active:item.is_active}, {onConflict:'couple_id,limit_key'}).then(function(){}); }
+      renderJourney(); renderDeck();
+    };
+  });
+}
+function renderJournal(){
+  var list = el('journalList'); if(!list) return;
+  list.innerHTML = '<h3>Shared history / Journal</h3>' + journal.map(function(j){ return '<div class="card"><h3>'+esc(j.title)+'</h3><p>'+esc(j.body)+'</p><p class="small muted">'+nameFor(j.created_by_role)+'</p></div>'; }).join('');
+}
+function renderNotifications(){
+  var list = el('notificationList'); if(!list) return;
+  list.innerHTML = notifications.map(function(n){ return '<div class="card"><h3>'+esc(n.title)+'</h3><p>'+esc(n.body)+'</p><p class="small muted">'+esc(n.category)+' — '+(n.is_read?'read':'unread')+'</p></div>'; }).join('');
+}
+function nextSunday(){
+  var d = new Date(); var add = (7 - d.getDay()) % 7; if(add===0) add = 7;
+  var s = new Date(d); s.setDate(d.getDate()+add); return s.toDateString();
+}
+function loadSbConfig(){
+  var u = localStorage.getItem('kingdoms_personal_sb_url')||'';
+  var k = localStorage.getItem('kingdoms_personal_sb_key')||'';
+  el('sbUrl').value = u; el('sbKey').value = k;
+  return {url:u, key:k};
+}
+
+
+function photoKey(){ var r = role || (el('authRole') ? el('authRole').value : 'submissive'); return 'kingdoms_personal_photo_' + r; }
+
+function loadSyncedPhotos(){ if(!sb || !connected || !coupleId) return Promise.resolve(); return sb.from('profiles').select('id, role, photo_data').eq('couple_id', coupleId).then(function(r){ if(r.error || !r.data) return; r.data.forEach(function(pr){ if(pr.photo_data){ try{ localStorage.setItem('kingdoms_personal_photo_' + pr.role, pr.photo_data); }catch(e){} if(pr.role === role){ loadProfilePhoto(); } else { var pp = el('partnerPhoto'); if(pp){ pp.src = pr.photo_data; pp.classList.remove('hidden'); } } } else if(pr.role === role){ var local = null; try{ local = localStorage.getItem('kingdoms_personal_photo_' + pr.role); }catch(e){} if(local){ sb.from('profiles').update({photo_data: local}).eq('id', pr.id).then(function(){}); } } }); }); }
+function loadProfilePhoto(){ var data = null; try{ data = localStorage.getItem(photoKey()); }catch(e){} var img = el('profilePhoto'); if(img){ if(data){ img.src = data; img.classList.remove('hidden'); } else { img.classList.add('hidden'); } } var top = el('topbarPhoto'); if(top){ if(data){ top.src = data; top.classList.remove('hidden'); } else { top.classList.add('hidden'); } } }
+function handlePhotoFile(file){ if(!file) return; var reader = new FileReader(); reader.onload = function(e){ var im = new Image(); im.onload = function(){ var s = 320; var canvas = document.createElement('canvas'); canvas.width = s; canvas.height = s; var ctx = canvas.getContext('2d'); var side = Math.min(im.width, im.height); var sx = (im.width - side) / 2; var sy = (im.height - side) / 2; ctx.drawImage(im, sx, sy, side, side, 0, 0, s, s); var out = canvas.toDataURL('image/jpeg', 0.85); try{ localStorage.setItem(photoKey(), out); if(el('photoStatus')) el('photoStatus').textContent = 'Profile photo saved in this browser only, 320 x 320.';
+        if(sb && connected && profileId){ sb.from('profiles').update({photo_data: out}).eq('id', profileId).then(function(r){ if(r.error){ if(el('photoStatus')) el('photoStatus').textContent = 'Profile photo saved in this browser only. Sync failed: ' + r.error.message; } else { if(el('photoStatus')) el('photoStatus').textContent = 'Profile photo saved and synced to your couple.'; } }); } }catch(err){ if(el('photoStatus')) el('photoStatus').textContent = 'Photo too large to save in this browser. Try a smaller image.'; return; } loadProfilePhoto(); }; im.src = e.target.result; }; reader.readAsDataURL(file); }
+function applyTheme(th){ document.body.setAttribute('data-theme', th); try{ localStorage.setItem('kingdoms_personal_theme', th); }catch(e){} var s=el('themeSelect'); if(s){ s.value = th; } }
+
+var VAPID_PUBLIC_KEY = 'BJHgVeMaIluuRLbXYM4xmW9L-btVDfBKSshqV9ieFPB1ujJPvqoUanrse8h7hskENQRX0MgThs8aM9bKm0UB5ak';
+function urlBase64ToUint8Array(base64String){ var padding = '='.repeat((4 - base64String.length % 4) % 4); var base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/'); var rawData = window.atob(base64); var outputArray = new Uint8Array(rawData.length); for(var i=0;i<rawData.length;i++){ outputArray[i] = rawData.charCodeAt(i); } return outputArray; }
+function enablePushNotifications(){ if(!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)){ if(el('pushStatus')) el('pushStatus').textContent='Push is not supported in this browser.'; return; } if(!sb || !connected || !coupleId || !profileId){ if(el('pushStatus')) el('pushStatus').textContent='Connect and sign in first, then enable push.'; return; } Notification.requestPermission().then(function(perm){ if(perm !== 'granted'){ if(el('pushStatus')) el('pushStatus').textContent='Push permission was not granted.'; return; } navigator.serviceWorker.getRegistration().then(function(reg){ if(reg) return reg; return navigator.serviceWorker.register('./service-worker.js'); }).then(function(reg){ return reg.pushManager.subscribe({userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)}); }).then(function(sub){ var subJson = sub.toJSON(); return sb.from('push_subscriptions').upsert({user_id: profileId, couple_id: coupleId, endpoint: subJson.endpoint, p256dh: subJson.keys.p256dh, auth: subJson.keys.auth}, {onConflict: 'endpoint'}).then(function(r){ if(r.error){ if(el('pushStatus')) el('pushStatus').textContent='Push subscription failed to save: ' + r.error.message; } else { if(el('pushStatus')) el('pushStatus').textContent='Push enabled for this phone.'; } }); }).catch(function(e){ if(el('pushStatus')) el('pushStatus').textContent='Push setup failed: ' + e.message + ' In the single-file version, use the multi-file PWA with service-worker.js instead.'; }); }); }
+function disablePushNotifications(){ if(!('serviceWorker' in navigator)){ return; } navigator.serviceWorker.getRegistration().then(function(reg){ if(!reg) return null; return reg.pushManager.getSubscription(); }).then(function(sub){ if(sub){ var endpoint = sub.endpoint; return sub.unsubscribe().then(function(){ if(sb && connected){ return sb.from('push_subscriptions').delete().eq('endpoint', endpoint); } }); } }).then(function(){ if(el('pushStatus')) el('pushStatus').textContent='Push disabled for this phone.'; }).catch(function(e){ if(el('pushStatus')) el('pushStatus').textContent='Push disable failed: ' + e.message; }); }
+function loadSupabaseClient(){
+  var cfg = loadSbConfig();
+  if(!cfg.url || !cfg.key) { connected=false; el('demoBanner').classList.remove('hidden'); return Promise.resolve(false); }
+  if(cfg.key.indexOf('service_role')>=0){ el('sbStatus').textContent='Do not use a service_role key. Use only the anon public key.'; return Promise.resolve(false); }
+  return new Promise(function(resolve){
+    if(window.supabase && window.supabase.createClient){
+      try{
+        sb = window.supabase.createClient(cfg.url, cfg.key);
+        connected = true; el('demoBanner').classList.add('hidden'); el('sbStatus').textContent='Supabase client ready. Sign in with Supabase Auth to sync.';
+        subscribeRealtime(); resolve(true);
+      }catch(e){ el('sbStatus').textContent='Supabase client failed: '+e.message; resolve(false); }
+    } else {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      s.onload = function(){
+        try{ sb = window.supabase.createClient(cfg.url, cfg.key); connected=true; el('demoBanner').classList.add('hidden'); el('sbStatus').textContent='Supabase client ready. Sign in with Supabase Auth to sync.'; subscribeRealtime(); resolve(true); }
+        catch(e){ el('sbStatus').textContent='Supabase client failed: '+e.message; resolve(false); }
+      };
+      s.onerror = function(){ el('sbStatus').textContent='Could not load Supabase JS client from CDN. Check connection and retry.'; resolve(false); };
+      document.head.appendChild(s);
+    }
+  });
+}
+function subscribeRealtime(){
+  if(!sb || !coupleId) return;
+  try{
+    sb.channel('kingdoms-personal-sync')
+      .on('postgres_changes', {event:'*', schema:'public', table:'journey_progress'}, function(){ loadFromSupabase(); })
+      .on('postgres_changes', {event:'*', schema:'public', table:'journal_entries'}, function(){ loadFromSupabase(); })
+      .on('postgres_changes', {event:'*', schema:'public', table:'notifications'}, function(){ loadFromSupabase(); })
+      .on('postgres_changes', {event:'*', schema:'public', table:'requests'}, function(){ loadFromSupabase(); })
+      .on('postgres_changes', {event:'*', schema:'public', table:'council_entries'}, function(){ loadFromSupabase(); })
+      .on('postgres_changes', {event:'*', schema:'public', table:'recaps'}, function(){ loadFromSupabase(); })
+      .subscribe();
+  }catch(e){}
+}
+function loadFromSupabase(){
+  if(!sb || !coupleId) return;
+  sb.from('journey_progress').select('*').eq('couple_id', coupleId).order('day_number').then(function(r){
+    if(r.data && r.data.length){ days = r.data.map(function(x){ return {day_number:x.day_number, phase:x.phase, dare_title:x.dare_title, dare_text:x.dare_text, category:x.category, time_minutes:x.time_minutes, intensity:x.intensity, status:x.status, reflection_text:x.reflection_text||'', limits_checked:x.limits_checked, safeword_used:x.safeword_used}; }); renderJourney(); }
+  });
+  sb.from('deck_dares').select('*').eq('couple_id', coupleId).then(function(r){ if(r.data && r.data.length){ deck = r.data.map(function(x){ return {title:x.title, description:x.description, category:x.category, time_minutes:x.time_minutes, intensity:x.intensity, is_custom:x.is_custom}; }); renderDeck(); } });
+  sb.from('journal_entries').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){ if(r.data){ journal = r.data.map(function(x){ return {title:x.title, body:x.body, created_by_role:x.created_by_role}; }); renderJournal(); } });
+  sb.from('limits').select('*').eq('couple_id', coupleId).then(function(r){ if(r.data && r.data.length){ limitsList = r.data.map(function(x){ return {limit_key:x.limit_key, limit_label:x.limit_label, is_active:x.is_active}; }); renderLimits(); } });
+  sb.from('notifications').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){ if(r.data){ notifications = r.data.map(function(x){ return {category:x.category, title:x.title, body:x.body, is_read:x.is_read}; }); renderNotifications(); } });
+  sb.from('council_entries').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){
+    if(r.data){ councilMine = r.data.filter(function(x){ return x.created_by===profileId; }).map(function(x){ return {owner_role:x.owner_role, full_text:x.full_text, theme_text:x.theme_text, share_status:x.share_status}; }); councilShared = r.data.filter(function(x){ return x.share_status==='theme_only' || x.share_status==='full'; }).map(function(x){ return {owner_role:x.owner_role, full_text:x.full_text, theme_text:x.theme_text, share_status:x.share_status}; }); renderCouncil(); }
+  });
+  sb.from('requests').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){ if(r.data){ requests = r.data.map(function(x){ return {from_role:x.from_role, to_role:x.to_role, title:x.title, body:x.body, tone_note:x.tone_note, status:x.status, response_text:x.response_text}; }); renderRequests(); } });
+  sb.from('recaps').select('*').eq('couple_id', coupleId).order('created_at', {ascending:false}).then(function(r){ if(r.data){ recaps = r.data.map(function(x){ return {month_text:x.month_text, content:x.content, created_by_role:x.created_by_role}; }); renderRecaps(); } });
+  sb.from('marriage_reward').select('*').eq('couple_id', coupleId).single().then(function(r){ if(r.data && r.data.choice){ rewardChoice = r.data.choice; renderMarriage(); } });
+}
+function resetDemo(){
+  councilMine = []; requests = [{from_role:'submissive', to_role:'Dominant', title:'More unhurried listening', body:'Please listen fully before responding when feelings are high.', tone_note:'gentle and unhurried', status:'pending', response_text:''}]; recaps = []; savedDates = []; journal = []; notifications = [];
+  renderCouncil(); renderRequests(); renderRecaps(); renderJournal(); renderNotifications(); renderDates();
+}
+document.addEventListener('DOMContentLoaded', function(){
+  loadSbConfig();
+  setRole('submissive');
+  el('sundayText').textContent = 'Every Sunday is protected 1-on-1 time for Mandraki and Takeesha. Next Sunday: ' + nextSunday() + '. No correction tasks that day. Reminder the day before and Sunday morning.';
+  document.querySelectorAll('[data-nav]').forEach(function(b){ b.addEventListener('click', function(){ if(!unlocked && b.getAttribute('data-nav')!=='settings'){ showView('lock'); return; } showView(b.getAttribute('data-nav')); }); });
+  el('roleSelect').addEventListener('change', function(){ setRole(this.value); });
+  el('demoEnterBtn').onclick = function(){ setRole(el('lockRole').value); unlocked=true; showView('home'); };
+  el('markLunchBtn').onclick = function(){
+    el('lunchMsg').textContent='Sunday lunch marked complete for Mandraki and Takeesha. Protected day — no correction tasks.';
+    addJournal('Sunday lunch completed','Protected 1-on-1 lunch for Mandraki and Takeesha.','reflection',null);
+    if(connected && sb && coupleId){ var d = new Date(); var add = (7 - d.getDay()) % 7; var s = new Date(d); s.setDate(d.getDate()+add); sb.from('sunday_lunch').upsert({couple_id:coupleId, lunch_date:s.toISOString().slice(0,10), status:'completed'}, {onConflict:'couple_id,lunch_date'}).then(function(){}); }
+  };
+  el('tonePauseBtn').onclick = function(){ el('toneMsg').textContent='Tone Pause taken — no penalty. Use Grace Words and return when calm.'; addJournal('Tone Pause','Tone Pause used, no penalty.','pause',null); addNotification('safeword'); };
+  el('drawBtn').onclick = function(){ renderDeck(); var items = el('deckList').children; if(items.length) items[0].scrollIntoView(); };
+  ['deckCategory','deckTime','deckIntensity'].forEach(function(id){ el(id).addEventListener('change', renderDeck); });
+  el('customSave').onclick = function(){
+    if(role!=='Dominant'){ alert('Only Mandraki (Dominant) can write a custom dare.'); return; }
+    var t = el('customTitle').value.trim(), d = el('customDesc').value.trim();
+    if(!t || !d){ alert('Title and description are required.'); return; }
+    var item = {title:t, description:d, category:el('customCat').value, time_minutes:20, intensity:'moderate', is_custom:true};
+    deck.unshift(item);
+    if(connected && sb && coupleId){ sb.from('deck_dares').insert({couple_id:coupleId, title:t, description:d, category:el('customCat').value, time_minutes:20, intensity:'moderate', is_custom:true, created_by:profileId}).then(function(){}); }
+    addJournal('Custom dare created by Mandraki: '+t,'Custom dare saved by Mandraki.','deck',null);
+    el('customTitle').value=''; el('customDesc').value=''; renderDeck();
+  };
+  el('acSave').onclick = function(){
+    var items = [];
+    if(el('ac1').checked) items.push('Quiet check-in together');
+    if(el('ac2').checked) items.push('Comfort, water, and rest offered');
+    if(el('ac3').checked) items.push('Limits and feelings reviewed kindly');
+    el('acMsg').textContent = 'Aftercare checklist saved.';
+    addJournal('Aftercare checklist completed', items.join('; '), 'reflection', null);
+    if(connected && sb && coupleId){ sb.from('aftercare_checks').insert({couple_id:coupleId, dare_label:lastCompletedLabel, checklist_text:items.join('; '), completed:true, created_by_role:role}).then(function(){}); }
+    el('aftercareBox').classList.add('hidden');
+    showQuestionnaire('deck', lastCompletedLabel);
+  };
+  el('rewardSave').onclick = function(){
+    var chosen = document.querySelector('input[name="reward"]:checked');
+    if(!chosen){ el('rewardMsg').textContent='Pick one reward first. Nothing is pre-selected.'; return; }
+    rewardChoice = chosen.value + (chosen.value==='custom' ? ': ' + el('rewardCustom').value.trim() : '');
+    el('rewardMsg').textContent='Saved reward: ' + rewardChoice;
+    if(connected && sb && coupleId){ sb.from('marriage_reward').upsert({couple_id:coupleId, choice:chosen.value, custom_text:el('rewardCustom').value.trim(), chosen_by_role:role, chosen_at:new Date().toISOString()}, {onConflict:'couple_id'}).then(function(){}); }
+  };
+  el('useAreaBtn').onclick = function(){
+    if(!navigator.geolocation){ el('dateCity').value='Evansville, IN'; return; }
+    navigator.geolocation.getCurrentPosition(function(){ el('dateCity').value='Evansville, IN (your area)'; renderDates(); }, function(){ el('dateCity').value='Evansville, IN'; renderDates(); });
+  };
+  el('dateSearchBtn').onclick = function(){ renderDates(); };
+  ['dateRadius','dateType','dateTime','dateBudget','dateVibe'].forEach(function(id){ el(id).addEventListener('change', renderDates); });
+  el('qSave').onclick = function(){ saveQuestionnaire(false); };
+  el('qSkip').onclick = function(){ saveQuestionnaire(true); };
+  el('councilPrivate').onclick = function(){ addCouncilEntry('private'); };
+  el('councilThemeBtn').onclick = function(){ addCouncilEntry('theme_only'); };
+  el('councilFullBtn').onclick = function(){ addCouncilEntry('full'); };
+  el('jointSaveBtn').onclick = function(){
+    var note = el('jointNote').textContent.trim();
+    if(!note || note.indexOf('Joint Council note')<0){ alert('A joint note appears only once both Mandraki and Takeesha have shared something.'); return; }
+    var month = new Date().toISOString().slice(0,7);
+    recaps.push({month_text:month, content:note, created_by_role:role});
+    addJournal('Council joint note saved', note, 'reflection', null);
+    if(connected && sb && coupleId){ sb.from('recaps').insert({couple_id:coupleId, month_text:month, content:note, created_by_role:role}).then(function(){}); }
+    renderRecaps();
+  };
+  el('reqSave').onclick = function(){
+    var t = el('reqTitle').value.trim(), b = el('reqBody').value.trim();
+    if(!t || !b){ alert('Title and Request text are required.'); return; }
+    var r = {from_role:role, to_role:role==='Dominant'?'submissive':'Dominant', title:t, body:b, tone_note:el('reqTone').value.trim(), status:'pending', response_text:''};
+    requests.unshift(r); syncRequest(r); addNotification('request');
+    el('reqTitle').value=''; el('reqBody').value=''; el('reqTone').value=''; renderRequests();
+  };
+  el('recapSave').onclick = function(){
+    var m = el('recapMonth').value.trim(), c = el('recapText').value.trim();
+    if(!m || !c){ alert('Month and recap notes are required.'); return; }
+    recaps.unshift({month_text:m, content:c, created_by_role:role});
+    if(connected && sb && coupleId){ sb.from('recaps').insert({couple_id:coupleId, month_text:m, content:c, created_by_role:role}).then(function(){}); }
+    el('recapText').value=''; renderRecaps();
+  };
+  el('exportBtn').onclick = function(){
+    var data = {couple:'Mandraki and Takeesha', recaps:recaps, journal:journal, exported_at:new Date().toISOString()};
+    var blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'kingdoms-recap-journal-export.json'; a.click();
+    el('exportMsg').textContent='Export downloaded (Recap & Journal).';
+  };
+  el('resetDemoBtn').onclick = function(){ if(connected){ alert('Reset test data is for demo mode only.'); return; } resetDemo(); el('exportMsg').textContent='Demo test data reset.'; };
+  el('pauseBtn').onclick = function(){ addJournal('Current dare paused','Paused with no penalty.','pause',currentDay); addNotification('safeword'); el('limitsMsg').textContent='Paused. No penalty.'; };
+  el('safewordBtn').onclick = function(){ addJournal('Safeword used','Honoured instantly, no penalty. Aftercare preferences apply.','safeword',currentDay); addNotification('safeword'); el('limitsMsg').textContent='Safeword honoured instantly, no penalty.'; };
+  el('markReadBtn').onclick = function(){ notifications.forEach(function(n){ n.is_read=true; }); renderNotifications(); };
+  el('saveSbBtn').onclick = function(){
+    var u = el('sbUrl').value.trim(), k = el('sbKey').value.trim();
+    if(!u || !k){ el('sbStatus').textContent='Enter both Project URL and anon key.'; return; }
+    if(k.indexOf('service_role')>=0){ el('sbStatus').textContent='Do not save a service_role key. Use only the anon public key.'; return; }
+    localStorage.setItem('kingdoms_personal_sb_url', u); localStorage.setItem('kingdoms_personal_sb_key', k);
+    el('sbStatus').textContent='Saved locally in this browser only.';
+    loadSupabaseClient();
+  };
+  el('testSbBtn').onclick = function(){ loadSupabaseClient().then(function(ok){ if(ok && sb){ sb.auth.getSession().then(function(r){ el('sbStatus').textContent = r.data && r.data.session ? 'Connected. Signed in with Supabase Auth.' : 'Client ready, but no Supabase Auth session yet. Sign in below.'; }); } else if(!ok){ el('sbStatus').textContent='Not connected. Check URL and anon key, and that the project exists.'; } }); };
+  el('clearSbBtn').onclick = function(){ localStorage.removeItem('kingdoms_personal_sb_url'); localStorage.removeItem('kingdoms_personal_sb_key'); sb=null; connected=false; coupleId=null; el('sbUrl').value=''; el('sbKey').value=''; el('demoBanner').classList.remove('hidden'); el('sbStatus').textContent='Connection cleared. Demo mode.'; };
+  el('authSignupBtn').onclick = function(){ if(!sb){ el('authStatus').textContent='Connect Supabase first in Settings above.'; return; } setRole(el('authRole').value); var em=el('authEmail').value.trim(), pw=el('authPassword').value; if(!em||!pw){ el('authStatus').textContent='Email and password are required.'; return; } sb.auth.signUp({email:em, password:pw}).then(function(r){ if(r.error){ el('authStatus').textContent='Sign-up failed: '+r.error.message; } else { el('authStatus').textContent='Signed up as '+displayName+'. Check email confirmation if Supabase Auth requires it, then sign in.'; } }); };
+  el('authSigninBtn').onclick = function(){ if(!sb){ el('authStatus').textContent='Connect Supabase first in Settings above.'; return; } setRole(el('authRole').value); var em=el('authEmail').value.trim(), pw=el('authPassword').value; sb.auth.signInWithPassword({email:em, password:pw}).then(function(r){ if(r.error){ el('authStatus').textContent='Sign-in failed: '+r.error.message; return; } var user=r.data.user; if(!user){ el('authStatus').textContent='Sign-in did not return a user.'; return; } profileId=user.id; unlocked=true; var code=el('pairingCode').value.trim(); if(code){ sb.rpc('get_couple_id_by_code', {p_code: code}).then(function(c){ if(c.error||!c.data){ el('authStatus').textContent='Pairing code not found. Create a new couple instead.'; return; } coupleId=c.data; return sb.from('profiles').upsert({id:user.id, couple_id:coupleId, role:role, display_name:displayName}, {onConflict:'id'}).then(function(){ el('authStatus').textContent='Signed in as '+displayName+' and paired.'; subscribeRealtime(); loadFromSupabase(); loadSyncedPhotos(); showView('home'); }); }); } else { var newCode=Math.random().toString(36).slice(2,8).toUpperCase(); sb.rpc('create_couple_for_me', {p_code: newCode}).then(function(c){ if(c.error||!c.data){ el('authStatus').textContent='Couple creation failed: '+(c.error?c.error.message:'unknown'); return; } coupleId=c.data; return sb.from('profiles').upsert({id:user.id, couple_id:coupleId, role:role, display_name:displayName}, {onConflict:'id'}).then(function(){ el('authStatus').textContent='Signed in as '+displayName+'. New pairing code: '+newCode+'. Share that code privately with the other profile so they can join the same couple.'; subscribeRealtime(); loadFromSupabase(); loadSyncedPhotos(); showView('home'); }); }); } }); };
+  el('authSignoutBtn').onclick = function(){ if(sb){ sb.auth.signOut().then(function(){}); } coupleId=null; profileId=null; unlocked=false; el('authStatus').textContent='Signed out. Switch profiles by signing in again with the other profile\'s own password.'; if(connected && sb){ el('demoBanner').classList.add('hidden'); el('sbStatus').textContent='Supabase client ready. Sign in with Supabase Auth to sync.'; } showView('lock'); };
+  el('changePwBtn').onclick = function(){ if(!sb){ el('authStatus').textContent='Connect and sign in first.'; return; } var np=el('newPassword').value; if(!np){ el('authStatus').textContent='Enter a new password in the Change my password field.'; return; } sb.auth.updateUser({password:np}).then(function(r){ if(r.error){ el('authStatus').textContent='Password change failed: '+r.error.message; } else { el('authStatus').textContent='Password changed for '+displayName+' only.'; el('newPassword').value=''; } }); };
+  renderJourney(); renderDeck(); renderMarriage(); renderDates(); renderCouncil(); renderRequests(); renderRecaps(); renderJournal(); renderNotifications(); renderLimits();
+  /* Single-file version: no service worker (see README limits). */
+  var savedTheme = localStorage.getItem('kingdoms_personal_theme')||'dark'; applyTheme(savedTheme); if(el('themeSelect')){ el('themeSelect').onchange = function(){ applyTheme(this.value); }; } if(el('profilePhotoInput')){ el('profilePhotoInput').onchange = function(){ handlePhotoFile(this.files[0]); }; } if(el('removePhotoBtn')){ el('removePhotoBtn').onclick = function(){ try{ localStorage.removeItem(photoKey()); }catch(e){} if(sb && connected && profileId){ sb.from('profiles').update({photo_data: null}).eq('id', profileId).then(function(){}); } if(el('photoStatus')) el('photoStatus').textContent='Profile photo removed.'; loadProfilePhoto(); }; } loadProfilePhoto();
+  if(el('enablePushBtn')){ el('enablePushBtn').onclick = function(){ enablePushNotifications(); }; }
+  if(el('disablePushBtn')){ el('disablePushBtn').onclick = function(){ disablePushNotifications(); }; }
+  loadSupabaseClient();
+});
+
+</script>
+</body>
+</html>
